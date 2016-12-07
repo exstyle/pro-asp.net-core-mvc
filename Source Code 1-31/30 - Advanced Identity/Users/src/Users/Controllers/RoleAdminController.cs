@@ -22,7 +22,7 @@ namespace Users.Controllers {
             userManager = userMrg;
         }
 
-        public ViewResult Index() => View(roleManager.Roles);
+        public ViewResult Index() => View(roleManager.Roles.ToList());
 
         public IActionResult Create() => View();
 
