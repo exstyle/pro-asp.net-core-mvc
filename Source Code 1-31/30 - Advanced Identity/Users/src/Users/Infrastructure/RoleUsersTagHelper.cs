@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -27,7 +28,8 @@ namespace Users.Infrastructure {
             List<string> names = new List<string>();
             IdentityRole role = await roleManager.FindByIdAsync(Role);
             if (role != null) {
-                foreach (var user in userManager.Users) {
+                var listUser = userManager.Users.ToList();
+                foreach (var user in listUser) {
                     if (user != null
                         && await userManager.IsInRoleAsync(user, role.Name)) {
                         names.Add(user.UserName);
